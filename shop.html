@@ -62,50 +62,51 @@
           <div class="contact-sub">We respond to all product enquiries promptly with pricing, availability, and delivery information.</div>
         </div>
       </div>
-      <form name="inquiry" method="POST" data-netlify="true">
-        <input type="hidden" name="form-name" value="inquiry">
-      <div class="order-form">
-        <div class="form-title">Product Enquiry</div>
-        <div class="form-sub">Fill in your details and we'll get back to you with pricing.</div>
+      <form name="inquiry" method="POST" data-netlify="true" class="order-form">
+  <input type="hidden" name="form-name" value="inquiry">
 
-        <div class="form-group">
-          <label>Select Product(s)</label>
-          <div class="product-chips">
-            <span class="chip" onclick="toggleChip(this)">Blood Pressure Monitor</span>
-            <span class="chip" onclick="toggleChip(this)">ICU Bed</span>
-            <span class="chip" onclick="toggleChip(this)">Fingertip Pulse Oximeter</span>
-            <span class="chip" onclick="toggleChip(this)">Oxygen Concentrator</span>
-          </div>
-        </div>
+  <div class="form-title">Product Enquiry</div>
+  <div class="form-sub">Fill in your details and we'll get back to you with pricing.</div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" placeholder="Dr. / Mr. / Ms." id="f-name">
-          </div>
-          <div class="form-group">
-            <label>Phone Number</label>
-            <input type="tel" placeholder="+94 XX XXX XXXX" id="f-phone">
-          </div>
-        </div>
+  <div class="form-group">
+    <label>Select Product(s)</label>
+    <div class="product-chips">
+      <span class="chip" onclick="toggleChip(this)">Blood Pressure Monitor</span>
+      <span class="chip" onclick="toggleChip(this)">ICU Bed</span>
+      <span class="chip" onclick="toggleChip(this)">Fingertip Pulse Oximeter</span>
+      <span class="chip" onclick="toggleChip(this)">Oxygen Concentrator</span>
+    </div>
+    <input type="hidden" name="products" id="selected-products">
+  </div>
 
-        <div class="form-group">
-          <label>Institution / Organisation</label>
-          <input type="text" placeholder="Hospital, Clinic, or Personal Use" id="f-org">
-        </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" name="full_name" placeholder="Dr. / Mr. / Ms." id="f-name" required>
+    </div>
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input type="tel" name="phone" placeholder="+94 XX XXX XXXX" id="f-phone" required>
+    </div>
+  </div>
 
-        <div class="form-group">
-          <label>Location</label>
-          <input type="text" placeholder="City / District" id="f-location">
-        </div>
+  <div class="form-group">
+    <label>Institution / Organisation</label>
+    <input type="text" name="organisation" placeholder="Hospital, Clinic, or Personal Use" id="f-org">
+  </div>
 
-        <div class="form-group">
-          <label>Message (Optional)</label>
-          <textarea placeholder="Quantity needed, specific requirements, or any questions..." id="f-message"></textarea>
-        </div>
+  <div class="form-group">
+    <label>Location</label>
+    <input type="text" name="location" placeholder="City / District" id="f-location">
+  </div>
 
-        <button type="submit" class="submit-btn" >Send Enquiry</button>
-        </form>
+  <div class="form-group">
+    <label>Message (Optional)</label>
+    <textarea name="message" placeholder="Quantity needed, specific requirements, or any questions..." id="f-message"></textarea>
+  </div>
+
+  <button type="submit" class="submit-btn">Send Enquiry</button>
+</form>
 
         <div class="success-msg" id="success-msg">
           ✅ Thank you! Your enquiry has been received. We'll contact you shortly via WhatsApp or phone.
@@ -119,29 +120,14 @@
     <div class="footer-copy">© 2025 Roche Pharmaceutical · Bambalapitiya, Colombo-04, Sri Lanka</div>
   </footer>
 
-  <!--<script>
-    function toggleChip(el) {
-      el.classList.toggle('selected');
-    }
-
-    function submitEnquiry() {
-      const name = document.getElementById('f-name').value.trim();
-      const phone = document.getElementById('f-phone').value.trim();
-      if (!name || !phone) {
-        alert('Please enter your name and phone number.');
-        return;
-      }
-      document.getElementById('success-msg').style.display = 'block';
-      setTimeout(() => {
-        document.getElementById('success-msg').style.display = 'none';
-        document.getElementById('f-name').value = '';
-        document.getElementById('f-phone').value = '';
-        document.getElementById('f-org').value = '';
-        document.getElementById('f-location').value = '';
-        document.getElementById('f-message').value = '';
-        document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
-      }, 5000);
-    }
-  </script>-->
+  <script>
+  function toggleChip(el) {
+    el.classList.toggle('selected');
+    const selected = [...document.querySelectorAll('.chip.selected')]
+      .map(chip => chip.textContent.trim())
+      .join(', ');
+    document.getElementById('selected-products').value = selected;
+  }
+</script>
 </body>
 </html>
