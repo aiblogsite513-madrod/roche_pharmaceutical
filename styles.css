@@ -37,15 +37,15 @@ nav {
 }
 
 .nav-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--white);
-  text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 10px; /* space between logo and text */
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 40px; /* adjust size */
+  width: auto;
 }
 
 .nav-logo span {
