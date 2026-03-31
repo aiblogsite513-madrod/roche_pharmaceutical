@@ -4,13 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Roche Pharmaceutical | About</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="Assets/Images/RP_icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="Assets/Images/RP_icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <nav>
     <a class="nav-logo" href="home.html">
-      <img src="Assets/Images/RP_logo - Copy.png" alt="Logo" class="logo-img">
+      <img src="Assets/Images/RP_logo.png" alt="Logo" class="logo-img">
       <div class="logo-text"><p>ROCHE</p><span>Pharmaceutical</span></div>
     </a>
     <ul class="nav-links">
@@ -29,7 +31,7 @@
       <div class="hero-content hero-content-single">
         <div class="hero-right hero-center-card">
           <div class="hero-card about-card">
-            <img src="Assets/Images/RP_logo - Copy.png" alt="Roche Pharmaceutical Logo" class="about-logo">
+            <img src="Assets/Images/RP_logo.png" alt="Roche Pharmaceutical Logo" class="about-logo">
             <h1 class="hero-title about-title">Roche <em>Pharmaceutical</em></h1>
             <div class="hero-tag">Medical Equipment Import & Distribution Company</div>
             <p class="hero-desc about-desc">
@@ -65,12 +67,66 @@
       </div>
     </section>
 
+    <section class="section product-carousel-section">
+      <span class="section-tag">Featured Products</span>
+      <h2 class="section-title">Explore Our <em>Products</em></h2>
+      <div class="divider"></div>
+
+      <div class="carousel-wrapper">
+        <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
+
+        <div class="carousel-track-container">
+          <div class="carousel-track" id="productCarousel">
+            
+            <div class="carousel-card">
+              <img src="Assets/Images/bp-monitor.jpeg" alt="Blood Pressure Monitor" class="carousel-img">
+              <div class="carousel-body">
+                <div class="carousel-name">Blood Pressure Monitor</div>
+                <div class="carousel-price">LKR xxxx</div>
+                <a href="products.html" class="carousel-link">Check Now</a>
+              </div>
+            </div>
+
+            <div class="carousel-card">
+              <img src="Assets/Images/icu-bed.jpeg" alt="ICU Electric Hospital Bed" class="carousel-img">
+              <div class="carousel-body">
+                <div class="carousel-name">ICU Electric Hospital Bed</div>
+                <div class="carousel-price">LKR xxxx</div>
+                <a href="products.html" class="carousel-link">Check Now</a>
+              </div>
+            </div>
+
+            <div class="carousel-card">
+              <img src="Assets/Images/oximeter.jpeg" alt="Fingertip Pulse Oximeter" class="carousel-img">
+              <div class="carousel-body">
+                <div class="carousel-name">Fingertip Pulse Oximeter</div>
+                <div class="carousel-price">LKR xxxx</div>
+                <a href="products.html" class="carousel-link">Check Now</a>
+              </div>
+            </div>
+
+            <div class="carousel-card">
+              <img src="Assets/Images/oxygen-concentrator.jpeg" alt="Oxygen Concentrator" class="carousel-img">
+              <div class="carousel-body">
+                <div class="carousel-name">Oxygen Concentrator</div>
+                <div class="carousel-price">LKR xxxx</div>
+                <a href="products.html" class="carousel-link">Check Now</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
+      </div>
+    </section>
+
     <section class="section" style="padding-top: 0;">
       <span class="section-tag">Leadership</span>
       <h2 class="section-title">A Message from our <em>Director</em></h2>
       <div class="divider"></div>
       <div class="ceo-section">
-        <div class="ceo-avatar">AH</div>
+        <img src="Assets/Images/AH.png" alt="Managing Director" class="ceo-avatar-img">
         <div>
           <p class="ceo-quote">
             "At Roche Pharmaceutical, our mission is to contribute meaningfully to the healthcare sector by ensuring access to reliable, innovative, and globally recognized medical equipment. Quality, integrity, and professional responsibility form the foundation of our operations. We continuously strive to build long-term partnerships with healthcare providers while maintaining exceptional service standards."
@@ -86,5 +142,41 @@
     <div class="footer-logo">ROCHE PHARMACEUTICAL</div>
     <div class="footer-copy">© 2025 Roche Pharmaceutical · Bambalapitiya, Colombo-04, Sri Lanka</div>
   </footer>
+
+  <script>
+    let currentSlide = 0;
+
+    function moveCarousel(direction) {
+      const track = document.getElementById("productCarousel");
+      const cards = document.querySelectorAll(".carousel-card");
+
+      if (!track || cards.length === 0) return;
+
+      let visibleCards = 3;
+      if (window.innerWidth <= 700) {
+        visibleCards = 1;
+      } else if (window.innerWidth <= 1024) {
+        visibleCards = 2;
+      }
+
+      const maxSlide = Math.max(0, cards.length - visibleCards);
+      currentSlide += direction;
+
+      if (currentSlide < 0) currentSlide = 0;
+      if (currentSlide > maxSlide) currentSlide = maxSlide;
+
+      const cardWidth = cards[0].offsetWidth + 24;
+      track.style.transform = `translateX(-${currentSlide * cardWidth}px)`;
+    }
+
+    window.addEventListener("resize", () => {
+      currentSlide = 0;
+      const track = document.getElementById("productCarousel");
+      if (track) {
+        track.style.transform = `translateX(0px)`;
+      }
+    });
+  </script>
+
 </body>
 </html>
