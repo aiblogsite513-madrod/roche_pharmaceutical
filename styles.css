@@ -114,6 +114,14 @@ main { min-height: 100vh; padding-top: 80px; }
   background: linear-gradient(135deg, var(--teal-deep) 0%, #071a18 40%, #0a3d3a 100%);
 }
 
+.hero-texture {
+  position: absolute;
+  inset: 0;
+  background: url("Assets/Images/about.jpg") center/cover no-repeat;
+  opacity: 0.8;
+  mix-blend-mode: overlay;
+}
+
 .hero-mesh {
   position: absolute;
   inset: 0;
