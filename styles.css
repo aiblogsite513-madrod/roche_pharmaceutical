@@ -37,15 +37,15 @@ nav {
 }
 
 .nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--white);
+  text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 10px; /* space between logo and text */
-  text-decoration: none;
-}
-
-.logo-img {
-  height: 60px; /* adjust size */
-  width: auto;
+  gap: 0.6rem;
 }
 
 .nav-logo span {
@@ -197,6 +197,28 @@ main { min-height: 100vh; padding-top: 80px; }
   animation: fadeInUp 0.8s 0.2s ease both;
 }
 
+.hero-stats {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 3rem;
+  animation: fadeInUp 0.8s 0.3s ease both;
+}
+
+.stat-item { text-align: center; }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--teal-bright);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(248,250,249,0.5);
+  margin-top: 0.3rem;
+}
 
 .hero-right { position: relative; animation: fadeInRight 1s 0.3s ease both; }
 .hero-card,
