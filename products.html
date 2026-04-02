@@ -15,7 +15,12 @@
       <img src="Assets/Images/RP_logo.png" alt="Logo" class="logo-img">
       <div class="logo-text"><p>ROCHE</p><span>Pharmaceutical</span></div>
     </a>
-    <ul class="nav-links">
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
       <li><a href="index.html">About</a></li>
       <li><a href="products.html" class="active">Products</a></li>
       <li><a href="shop.html">Shop Now</a></li>
@@ -98,5 +103,29 @@
     <div class="footer-logo">ROCHE PHARMACEUTICAL</div>
     <div class="footer-copy">© 2025 Roche Pharmaceutical · Bambalapitiya, Colombo-04, Sri Lanka</div>
   </footer>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener("click", () => {
+        menuToggle.classList.toggle("active");
+        navLinks.classList.toggle("show");
+        menuToggle.setAttribute(
+          "aria-expanded",
+          menuToggle.classList.contains("active") ? "true" : "false"
+        );
+      });
+
+      navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          menuToggle.classList.remove("active");
+          navLinks.classList.remove("show");
+          menuToggle.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+  </script>
 </body>
 </html>
