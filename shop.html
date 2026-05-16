@@ -70,7 +70,7 @@
           <div class="contact-sub">We respond to all product enquiries promptly with pricing, availability, and delivery information.</div>
         </div>
       </div>
-      <form name="inquiry" method="POST" data-netlify="true" class="order-form">
+      <form name="inquiry" id="inquiryForm" method="POST" data-netlify="true" class="order-form">
   <input type="hidden" name="form-name" value="inquiry">
 
   <div class="form-title">Product Enquiry</div>
@@ -130,6 +130,49 @@
       .map(chip => chip.textContent.trim())
       .join(', ');
     document.getElementById('selected-products').value = selected;
+  }
+
+  const inquiryForm = document.getElementById('inquiryForm');
+
+  if (inquiryForm) {
+    inquiryForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const recipientEmail = 'madushangarodrigo@gmail.com'; // Replace with your receiving email address
+      const products = document.getElementById('selected-products').value || 'Not selected';
+      const fullName = document.getElementById('f-name').value.trim();
+      const phone = document.getElementById('f-phone').value.trim();
+      const organisation = document.getElementById('f-org').value.trim() || 'Not provided';
+      const location = document.getElementById('f-location').value.trim() || 'Not provided';
+      const message = document.getElementById('f-message').value.trim() || 'No additional message';
+
+      if (!fullName || !phone) {
+        inquiryForm.reportValidity();
+        return;
+      }
+
+      const subject = `Product Enquiry - ${fullName}`;
+      const body =
+`Dear Roche Pharmaceutical Team,
+
+A new product enquiry has been submitted through the website.
+
+Enquiry Details
+----------------
+Selected Product(s): ${products}
+Full Name: ${fullName}
+Phone Number: ${phone}
+Institution / Organisation: ${organisation}
+Location: ${location}
+
+Message:
+${message}
+
+Thank you.`;
+
+      const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoLink;
+    });
   }
 </script>
 
